@@ -7,9 +7,10 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
     public function listOfProducts(){
-        return "liste des produit ok";
+        return view('product-list');
     }
     public function detailsOfProducts($id){
-        return "Fiche du produit " . $id;
+        $data = compact('id');
+        return view('product-details')->with($data);
     }
 }

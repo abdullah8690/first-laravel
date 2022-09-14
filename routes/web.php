@@ -35,32 +35,32 @@ use App\Http\Controllers\CartController;
 //});
 
         // partie 2.2
-//Route::get('/',[HomeController::class,'homePage']);
-//
-//Route::get('/product',[ProductController::class,'listOfProducts']);
-//
-//Route::get('/product/{id}',[ProductController::class,'detailsOfProducts']);
-//
-//Route::get('/cart',[CartController::class,'panier']);
+Route::get('/',[HomeController::class,'homePage']);
+
+Route::get('/product',[ProductController::class,'listOfProducts']);
+
+Route::get('/product/{id}',[ProductController::class,'detailsOfProducts']);
+
+Route::get('/cart',[CartController::class,'panier']);
 
             // partie 2.3
 
 
-Route::get('/',function (){
-    return view('home');
-});
-
-Route::get('/product',function (){
-    return view('product-list');
-});
-
-Route::get('/product/{id}',function ($id){
-    $data = compact('id');
-    return view('product-details')->with($data);
-});
-
-Route::get('/cart',function (){
-    return view('cart');
-});
+//Route::get('/',function (){
+//    return view('home');
+//});
+//
+//Route::get('/product',function (){
+//    return view('product-list');
+//});
+//
+//Route::get('/product/{id}',function ($id){
+//    $data = compact('id');
+//    return view('product-details')->with($data);
+//});
+//
+//Route::get('/cart',function (){
+//    return view('cart');
+//});
 
 
