@@ -7,8 +7,8 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>
-       Panier
-    </h1>
+<h1>
+    Fiche du produit, {{$id}}
+</h1>
 </body>
 </html>
