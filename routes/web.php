@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\RegistrationController;
 
 
 /*
@@ -42,6 +43,10 @@ Route::get('/product',[ProductController::class,'listOfProducts']);
 Route::get('/product/{id}',[ProductController::class,'detailsOfProducts']);
 
 Route::get('/cart',[CartController::class,'panier']);
+
+//Registration form
+Route::get('/register',[RegistrationController::class,'index']);
+Route::post('/register',[RegistrationController::class,'register']);
 
             // partie 2.3
 
