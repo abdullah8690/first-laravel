@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
-use App\Http\Controllers\RegistrationController;
+use App\Models\Products;
 
 
 /*
@@ -17,7 +17,14 @@ use App\Http\Controllers\RegistrationController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//Route::get('/connection', function (){
+//try {
+//    DB::connection()->getPdo();
+//    return 'connection successful';
+//} catch (\Exception $e) {
+//    die("Could not connect to the database.  Please check your configuration. error:" . $e );
+//}
+//});
         // partie 2.1
 //Route::get('/',function (){
 //    return "homepage";
@@ -38,17 +45,34 @@ use App\Http\Controllers\RegistrationController;
         // partie 2.2
 Route::get('/',[HomeController::class,'homePage']);
 
+Route::get('/admin', function () {
+    return view('admin.dashboard');
+});
+
 Route::get('/product',[ProductController::class,'listOfProducts']);
 
 Route::get('/product/{id}',[ProductController::class,'detailsOfProducts']);
+//Route::get('/insertData',[ProductController::class,'insertProduct']);
 
-Route::get('/cart',[CartController::class,'panier']);
+//Route::get('/insertProductForm',[ProductController::class,'index']);
+Route::get('/insertProductForm',[ProductController::class,'insertProduct']);
 
-//Registration form
-Route::get('/register',[RegistrationController::class,'index']);
-Route::post('/register',[RegistrationController::class,'register']);
+Route::post('/product/delete/{id}',[ProductController::class,'deleteData'])->name('product.delete');
 
-            // partie 2.3
+Route::get('/productByName',[ProductController::class,'byName']);
+Route::get('/productByPrice',[ProductController::class,'byPrice']);
+
+
+Route::get('/getData',[ProductController::class,'getData']);
+
+Route::get('/updateData',[ProductController::class,'updateData']);
+//Route::get('/deleteData',[ProductController::class,'deleteData']);
+
+
+
+
+
+// partie 2.3
 
 
 //Route::get('/',function (){
@@ -67,5 +91,4 @@ Route::post('/register',[RegistrationController::class,'register']);
 //Route::get('/cart',function (){
 //    return view('cart');
 //});
-
 
