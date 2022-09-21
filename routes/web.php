@@ -48,16 +48,21 @@ Route::get('/',[HomeController::class,'homePage']);
 Route::get('/admin', function () {
     return view('admin.dashboard');
 });
+Route::get('/cart',[CartController::class,'panier']);
 
-Route::get('/product',[ProductController::class,'listOfProducts']);
+Route::get('/product',[ProductController::class,'index']);
 
-Route::get('/product/{id}',[ProductController::class,'detailsOfProducts']);
+Route::get('/product/{id}',[ProductController::class,'show']);
 //Route::get('/insertData',[ProductController::class,'insertProduct']);
 
-//Route::get('/insertProductForm',[ProductController::class,'index']);
-Route::get('/insertProductForm',[ProductController::class,'insertProduct']);
+Route::get('/product/list',[ProductController::class,'index']);
+Route::get('/insertProductForm',[ProductController::class,'create']);
+Route::post('insert-product',[ProductController::class,'store']);
 
-Route::post('/product/delete/{id}',[ProductController::class,'deleteData'])->name('product.delete');
+Route::post('/product/delete/{id}',[ProductController::class,'destroy'])->name('product.delete');
+Route::get('/product/edit/{id}',[ProductController::class,'edit'])->name('product.edit');
+Route::put('/product/update/{id}',[ProductController::class,'update'])->name('product.update');
+
 
 Route::get('/productByName',[ProductController::class,'byName']);
 Route::get('/productByPrice',[ProductController::class,'byPrice']);

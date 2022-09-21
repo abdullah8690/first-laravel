@@ -4,7 +4,7 @@
     <div class="container">
         <h1>Shopping</h1>
         <div class="row">
-            @foreach($data as $data)
+            @foreach($products as $data)
                 <div class="col-md-3 mb-5">
                     <div class="product bg-gray-300/50">
                         <a href="{{'/product/{id}'}}"> <img src="{{$data->image}}" class="img-fluid" alt=""></a>

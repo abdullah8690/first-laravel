@@ -1,43 +1,54 @@
 @extends('layout')
-
+@section('title')
+    products
+@endsection
 @section('content')
 
-    <div class="container">
+    <a href="/insertProductForm">
+        <button class=" col-md-12 btn btn-primary  m-2 "> Add Product</button>
+    </a>
 
-        <a href="/insertProductForm">
-            dfghj
-            <button class="btn btn-primary d-inline-block m-2 float-right"> Add</button>
-        </a>
+    <div class="container">
         <div class="row">
-            @foreach($data as $data)
-                <div class="col-md-3 mb-5">
-                    <div class="product bg-gray-300/50">
-                        <a href="{{'/product/{id}'}}"> <img src="{{$data->image}}" class="img-fluid" alt=""></a>
-                        <h5 class="card-title ">{{$data->name}}</h5>
-                        <h5 class="card-title">{{$data->description}}</h5>
-                        <h5 class="card-title">{{$data->weight}} g</h5>
-                        <p class="card-text">{{$data->price}} €</p>
-                        <form action="{{'/product/delete'}}/{{$data->id}}" method="POST">
+
+            @foreach($products as $product)
+                @if($product->price <= 10)
+                <div class="col-md-3 m-2 card bg-success">
+{{--                    <div class="product bg-gray-300/50">--}}
+                        <a href="{{'/product/{id}'}}"> <img src="{{$product->image}}" class="img-fluid" alt=""></a>
+                        <h5 class="card-title ">{{$product->name}}</h5>
+                        <h5 class="card-title">{{$product->description}}</h5>
+                        <h5 class="card-title">{{$product->weight}} g</h5>
+                        <p class="card-text">{{$product->price}} €</p>
+                        @elseif($product->price >= 20)
+                                <div class="col-md-3  m-2 card bg-warning">
+                                    {{--                            <div class="product bg-gray-300/50">--}}
+                                    <a href="{{'/product/{id}'}}"> <img src="{{$product->image}}" class="img-fluid" alt=""></a>
+                                    <h5 class="card-title ">{{$product->name}}</h5>
+                                    <h5 class="card-title">{{$product->description}}</h5>
+                                    <h5 class="card-title">{{$product->weight}} g</h5>
+                                    <p class="card-text">{{$product->price}} €</p>
+                                @endif
+                        <form action="{{'/product/delete'}}/{{$product->id}}" method="POST">
                             @csrf
-{{--                            <input type="number" name="qty" min="1" max="5" value="1">--}}
                             <input type="hidden" name="item_name" value="">
                             <input type="hidden" name="image" value="">
                             <input type="hidden" name="id" value="">
                             <input type="hidden" name='price' value="">
                             <input type="hidden" name='weight' value="">
-                            <button type="submit" name="update_product" class="btn btn-info">Update</button>
-                                <a href="{{route('product.delete',['id'=>$data->id])}}">
-                                    <button type="submit" name="delete" class="btn btn-danger">Delete</button>
-                                </a>
-                        </form>
-                        {{--                    <laba>Quantity</laba>--}}
-                        {{--                    <input type="number" class="input-group w-1 mb-1" value="1">--}}
-                        {{--                    <input style="width: 200px" class="btn btn-primary" type="submit" value="Add to Cart">--}}
 
+                            <a href="{{route('product.delete',['id'=>$product->id])}}">
+                                <button type="submit" name="delete" class="btn btn-danger ">Delete</button>
+                            </a>
+                        </form>
+                        <a href="{{route("product.edit", ["id" => $product->id])}}">
+                            <button class="btn btn-primary d-inline-block m-2 float-right">Update</button>
+                        </a>
 
                     </div>
-                </div>
+{{--                </div>--}}
             @endforeach
+
         </div>
 
     </div>

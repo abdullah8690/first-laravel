@@ -1,18 +1,20 @@
 @extends('layout')
 
 @section('title')
-    RegistrationForm
+    Update
 @endsection
 
 @section('content')
-    <form action="{{url('insert-product')}}/" method="POST">
+    <form action="{{route("product.update", ['id' => $products->id])}}" method="POST">
+        @method('PUT')
         @csrf
         <div class="container mt-4 card p-3 bg-white">
-            <h1 class="text-center text-primary">Add Product</h1>
+            <h1 class="text-center text-primary">Update Product</h1>
             <div class="row">
                 <div class="form-group col-md-6 required">
                     <label for="">Name</label>
-                    <input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{old('name')}}">
+                    <input type="text" name="name" class="form-control" id="exampleInputEmail1"
+                           aria-describedby="emailHelp" value="{{$products->name}}">
                     <spam class="text-danger">
                         @error('name')
                         {{$message}}
@@ -22,7 +24,8 @@
                 </div>
                 <div class="form-group col-md-6 required">
                     <label for="">Description</label>
-                    <input type="text" name="description" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{old('email')}}">
+                    <input type="text" name="description" class="form-control" id="exampleInputEmail1"
+                           aria-describedby="emailHelp" value="{{$products->description}}">
                     <spam class="text-danger">
                         @error('description')
                         {{$message}}
@@ -32,7 +35,8 @@
                 </div>
                 <div class="form-group col-md-6 required">
                     <label for="">Price</label>
-                    <input type="number" name="price" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input type="number" name="price" class="form-control" id="exampleInputEmail1"
+                           aria-describedby="emailHelp" value="{{$products->price}}">
                     <spam class="text-danger">
                         @error('price')
                         {{$message}}
@@ -42,7 +46,8 @@
                 </div>
                 <div class="form-group col-md-6 required">
                     <label for="">Image</label>
-                    <input type="text" name="image" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input type="text" name="image" class="form-control" id="exampleInputEmail1"
+                           aria-describedby="emailHelp" value="{{$products->image}}">
                     <spam class="text-danger">
                         @error('image')
                         {{$message}}
@@ -52,7 +57,8 @@
                 </div>
                 <div class="form-group col-md-6 required">
                     <label for="">Weight</label>
-                    <input type="number" name="weight" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input type="number" name="weight" class="form-control" id="exampleInputEmail1"
+                           aria-describedby="emailHelp" value="{{$products->weight}}">
                     <spam class="text-danger">
                         @error('weight')
                         {{$message}}
@@ -62,7 +68,8 @@
                 </div>
                 <div class="form-group col-md-6 required">
                     <label for="">Avalaible</label>
-                    <input type="number" name="available" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input type="number" name="available" class="form-control" id="exampleInputEmail1"
+                           aria-describedby="emailHelp" value="{{$products->available}}">
                     <spam class="text-danger">
                         @error('available')
                         {{$message}}
@@ -72,7 +79,8 @@
                 </div>
                 <div class="form-group col-md-6 required">
                     <label for="">Category</label>
-                    <input type="number" name="category_id" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input type="number" name="category_id" class="form-control" id="exampleInputEmail1"
+                           aria-describedby="emailHelp" value="{{$products->category_id}}">
                     <spam class="text-danger">
                         @error('category_id')
                         {{$message}}
@@ -82,7 +90,8 @@
                 </div>
                 <div class="form-group col-md-6 required">
                     <label for="">Quantity</label>
-                    <input type="number" name="quantity" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input type="number" name="quantity" class="form-control" id="exampleInputEmail1"
+                           aria-describedby="emailHelp" value="{{$products->quantity}}">
                     <spam class="text-danger">
                         @error('quantity')
                         {{$message}}
@@ -98,4 +107,3 @@
 
 @section('footer')
 @endsection
-
