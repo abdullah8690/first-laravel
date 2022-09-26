@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Categories;
 use App\Models\Customer;
-use App\Models\Products;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -13,50 +13,65 @@ class ProductController extends Controller
 
     public function index()
     {
-        $products = Products::all();
+        $products = Product::all();
         return view('product-list',compact('products'));
     }
 
 
     public function create()
     {
-        Products::all();
+        Product::all();
         return view('insertData');
     }
 
     public function show($id)
     {
-        $products = Products::find($id);
-        return view('product-details', ['products' => $products]);
+        $product = Product::findOrFail($id);
+
+        return view('product-details', ['product' => $product]);
     }
 
     public function byName()
     {
-        $products = Products::orderBy('name')->get();
+        $products = Product::orderBy('name')->get();
         return view('product-by-name', ['products' => $products]);
 
     }
 
     public function byPrice()
     {
-        $products = Products::orderBy('price', 'asc')->get();
+        $products = Product::orderBy('price', 'asc')->get();
         return view('product-by-price', ['products' => $products]);
     }
 
     public function store(Request $request)
     {
-        $products = new Products();
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $ext = $file->getClientOriginalExtension();
-            $filename = time() . '.' . $ext;
-            $file->move('imgFolder', $filename);
-            $products->image = $filename;
-        }
+        $request->validate([
+//            'name'=>'required|JPG|JPEG|PNG',
+            'name'=>'required',
+            'description'=>'required',
+            'price'=>'required|integer|min:1',
+            'image'=>'required',
+            'weight'=>'required',
+            'available'=>'required',
+//            'category_id '=>'required',
+            'quantity'=>'required',
+        ]);
+
+        $products = new Product();
+
+
         $products->name = $request->input('name');
         $products->description = $request->input('description');
         $products->price = $request->input('price');
         $products->image = $request->input('image');
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $ext = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $ext;
+            $file->move('assets/images', $filename);
+            $products->image = $filename;
+        }
         $products->weight = $request->input('weight');
         $products->available = $request->input('available');
         $products->category_id = $request->input('category_id');
@@ -77,12 +92,28 @@ class ProductController extends Controller
 //        'quantity'=>'1',
 //    ]
 //    );
-
+    public function edit($id)
+    {
+        $products = Product::find($id);
+//        $products = DB::update('update products set description = ?',['Best Products']);
+        return view('edit', ['products' => $products]);
+    }
 
 
     public function update(Request $request, int $id)
     {
-        $product = Products::find($id);
+        $request->validate([
+            'name'=>'required',
+            'description'=>'required',
+            'price'=>'required',
+            'image'=>'required',
+            'weight'=>'required',
+            'available'=>'required',
+//            'category_id '=>'required',
+            'quantity'=>'required',
+        ]);
+
+        $product = Product::find($id);
 //        dd($request, $product);
         $product->name = $request->name;
         $product->description = $request->description;
@@ -96,16 +127,11 @@ class ProductController extends Controller
         return redirect("/product");
     }
 
-    public function edit($id)
-    {
-        $products = Products::find($id);
-//        $products = DB::update('update products set description = ?',['Best Products']);
-        return view('edit', ['products' => $products]);
-    }
+
 
     public function destroy($id)
     {
-        $product = Products::find($id);
+        $product = Product::find($id);
         if (!is_null($product)) {
             $product->delete();
         }
@@ -115,6 +141,17 @@ class ProductController extends Controller
 
 
     }
+
+    function category(){
+        $categories = Categories::all();
+        return view('oneToOne', compact('categories'));
+
+
+        //        echo "<pre>";
+//        print_r($products);
+//        echo "</pre>";
+    }
+
 
 
 
