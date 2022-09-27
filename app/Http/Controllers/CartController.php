@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use App\Models\Product;
 use App\Models\Categories;
 use Illuminate\Http\Request;
@@ -12,9 +13,16 @@ use App\Models\Customer;
 
 class CartController extends Controller
 {
-        public function panier( $id , Request $request)
-        {
-            $product = Product::find($id);
-            return view('cart', ['product' => $product, 'request' => $request]);
-        }
+    public function panier(Request $request, $id)
+    {
+        $product = Product::find($id);
+        $request->validate([
+            'quantity' => 'required|integer|min:1|max:' . $product->quantity,
+        ]);
+            $product->quantity = $request->input('quantity');
+
+
+      return view('/cart', ['product' => $product]);
+    }
+
 }

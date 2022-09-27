@@ -33,15 +33,15 @@ class ProductController extends Controller
 
     public function byName()
     {
-        $products = Product::orderBy('name')->get();
-        return view('product-by-name', ['products' => $products]);
+        $product = Product::orderBy('name')->get();
+        return view('product-by-name', ['product' => $product]);
 
     }
 
     public function byPrice()
     {
-        $products = Product::orderBy('price', 'asc')->get();
-        return view('product-by-price', ['products' => $products]);
+        $product = Product::orderBy('price', 'asc')->get();
+        return view('product-by-price', ['product' => $product]);
     }
 
     public function store(Request $request)
@@ -94,9 +94,9 @@ class ProductController extends Controller
 //    );
     public function edit($id)
     {
-        $products = Product::find($id);
+        $product = Product::find($id);
 //        $products = DB::update('update products set description = ?',['Best Products']);
-        return view('edit', ['products' => $products]);
+        return view('edit', ['product' => $product]);
     }
 
 

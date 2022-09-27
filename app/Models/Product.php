@@ -26,5 +26,6 @@ class Product extends Model
         return $this->BelongsTo('App\Models\Categories','category_id');
     }
 
+
 }
 //        return $this->hasMany(Categories::class);

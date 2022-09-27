@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('weight');
             $table->integer('available');
             $table->unsignedBigInteger('category_id');
-            $table->foreign('category_id')->references('category_id')->on('categories');
+//            $table->foreign('category_id')->references('category_id')->on('categories');
             $table->integer('quantity')->nullable();
             $table->timestamps();
         });

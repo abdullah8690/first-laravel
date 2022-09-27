@@ -26,11 +26,11 @@ Route::get('/',[HomeController::class,'homePage']);
 Route::get('/admin', function () {
     return view('admin.dashboard');
 });
-Route::get('/cart/{id}',[CartController::class,'panier'])->name('addTo.cart');
+Route::post('/cart/{id}',[CartController::class,'panier'])->name('addTo.cart');
 
 
 Route::get('/product',[ProductController::class,'index']);
-Route::get('/product/{id}',[ProductController::class,'show']);
+Route::get('/product/{id}',[ProductController::class,'show'])->name('product.detail');
 //Route::get('/insertData',[ProductController::class,'insertProduct']);
 Route::get('/product/list',[ProductController::class,'index']);
 Route::get('/insertProductForm',[ProductController::class,'create']);
@@ -54,7 +54,21 @@ Route::get('/updateData',[ProductController::class,'updateData']);
 Route::get('/oneToOne',[ProductController::class,'category']);
 //Route::get('/oneToOne',[ProductController::class,'category']);
 
+//Route::post('/cart',[CartController::class,'show']);
+//
+//Route::get('/cart',[CartController::class,'index']);
+//Route::get('/cart/{id}',[CartController::class,'show'])->name('addTo.cart');
+//
+//Route::get('/insertProductForm',[CartController::class,'create']);
+//Route::post('insert-product',[CartController::class,'store']);
+//Route::delete('/cart/delete/{id}',[CartController::class,'destroy'])->name('product.delete');
+//
+//
+//Route::get('/product/edit/{id}',[CartController::class,'edit'])->name('product.edit');
+//Route::put('/product/update/{id}',[CartController::class,'update'])->name('product.update');
 
+Route::get('/class',[CategoryController::class,'class']);
+Route::get('/class2',[CategoryController::class,'class2']);
 
 
 

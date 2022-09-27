@@ -43,8 +43,17 @@
                     <a class="nav-link active" aria-current="page" href="{{'/product'}}">Products</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{'/product/{id}'}}">Products Details</a>
+                    <a class="nav-link active" aria-current="page" href="{{'/productByName'}}">ProductByName</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{'/productByPrice'}}">ProductByPrice</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{'/oneToOne'}}">ProductByCategory</a>
+                </li>
+{{--                <li class="nav-item">--}}
+{{--                    <a class="nav-link" href="{{'/product/{id}'}}">Products Details</a>--}}
+{{--                </li>--}}
             </ul>
             <ul>
                 <form action="/search" class="d-flex">

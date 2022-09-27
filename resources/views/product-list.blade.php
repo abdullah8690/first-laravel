@@ -13,24 +13,25 @@
 
             @foreach($products as $product)
                 @if($product->price <= 10)
-                    <div class="col-md-3 m-2 card bg-success">
+                    <div class="col-md-3 m-1 card bg-success text-white">
                         {{--                    <div class="product bg-gray-300/50">--}}
-                        <a href="{{'/product/{id}'}}"> <img src="{{$product->image}}" class="img-fluid" alt=""></a>
-                        <h5 class="card-title ">{{$product->name}}</h5>
-                        <h5 class="card-title">{{$product->description}}</h5>
-                        <h5 class="card-title">{{$product->weight}} g</h5>
-                        <p class="card-text">{{$product->category->category_name}} </p>
-                        <p class="card-text">{{$product->price}} €</p>
+                        <h1 class="card-title ">{{$product->name}}</h1>
+                        <img src="{{$product->image}}" class="img-fluid" alt="">
+
+                        <p class="card-title p-2 text-center">{{$product->description}}</p>
+                        <h4 class="card-title">{{$product->weight}} G</h4>
+                        <h2 class="card-text">{{$product->category->category_name}} </h2>
+                        <h2 class="card-text">{{$product->price}} €</h2>
 
                         @elseif($product->price >= 20)
-                            <div class="col-md-3  m-2 card bg-warning">
+                            <div class="col-md-3  m-1 card bg-info text-white">
                                 {{--                            <div class="product bg-gray-300/50">--}}
-                                <a href="{{'/product/{id}'}}"> <img src="{{$product->image}}" class="img-fluid" alt=""></a>
-                                <h5 class="card-title ">{{$product->name}}</h5>
-                                <h5 class="card-title">{{$product->description}}</h5>
-                                <h5 class="card-title">{{$product->weight}} g</h5>
-                                <p class="card-text">{{$product->price}} €</p>
-                                <p class="card-text">{{$product->category->category_name}} </p>
+                                <h1 class="card-title text-center ">{{$product->name}}</h1>
+                                <img src="{{$product->image}}" class="img-fluid" alt="">
+                                <p class="card-title">{{$product->description}}</p>
+                                <h4 class="card-title">{{$product->weight}} G</h4>
+                                <h2 class="card-text">Price {{$product->price}} €</h2>
+                                <h2 class="card-text">{{$product->category->category_name}} </h2>
                                 @endif
                                 <form action="{{'/product/delete'}}/{{$product->id}}" method="POST">
                                     @csrf

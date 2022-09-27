@@ -10,23 +10,23 @@
             <thead>
             <tr>
                 <th>Name</th>
-                <th>Description</th>
+{{--                <th>Description</th>--}}
                 <th>Price</th>
                 <th>Image</th>
                 <th>Weight</th>
                 <th>Available</th>
-                <th>Quantity</th>
                 <th>Category</th>
+                <th>Quantity</th>
                 <th>Created-at</th>
                 <th>Updated_at</th>
                 <th>Action</th>
             </tr>
             </thead>
             <tbody>
-{{--            @foreach($products as $product)--}}
+{{--            @foreach($product as $product)--}}
                 <tr>
                     <td>{{$product->name}}</td>
-                    <td>{{$product->description}}</td>
+{{--                    <td>{{$product->description}}</td>--}}
                     <td>{{$product->price}}</td>
                     <td><img src="{{$product->image}}" width="50px" height="50px" alt=""> </td>
                     <td> {{$product->weight}} G</td>
@@ -41,6 +41,7 @@
                             </a>
                         @endif
                     </td>
+{{--                    <td>{{$product->category_name}}</td>--}}
                     <td>{{$product->category_id}}</td>
                     <td>{{$product->quantity}}</td>
                     <td>{{$product->created_at}}</td>

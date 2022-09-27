@@ -1,31 +1,52 @@
 @extends('layout')
-
+@section('title')
+    products
+@endsection
 @section('content')
-    <div class="container">
-        <h1>Shopping</h1>
-        <div class="row">
-            @foreach($product as $product)
-                <div class="col-md-3 mb-5">
-                    <div class="product bg-gray-300/50">
-                        <a href="{{'/product/{id}'}}"> <img src="{{$product->image}}" class="img-fluid" alt=""></a>
-                        <h5 class="card-title ">{{$product->name}}</h5>
-                        <h5 class="card-title">{{$product->description}}</h5>
-                        <h5 class="card-title">{{$product->weight}} g</h5>
-                        <p class="card-text">{{$product->price}} €</p>
-                        <a href="{{route("product.edit", ["id" => $product->id])}}">
-                            <button class="btn btn-primary d-inline-block m-2 float-right">Update</button>
-                        </a>
-                    </div>
-                </div>
-            @endforeach
-        </div>
 
-    </div>
+    <div class="container">
+        <div class="row">
+
+            @foreach($product as $product)
+                @if($product->price <= 10)
+                    <div class="col-md-3 m-2 card bg-success">
+                        <a class="text-decoration-none text-white" href="/product/{{$product['id']}}">
+                            <img src="{{$product->image}}" width="250px" height="200px" class=" mt-2" alt="">
+                            <h5 class="card-title ">{{$product->name}}</h5>
+                            <h5 class="card-title">{{$product->description}}</h5>
+                            <h5 class="card-title">{{$product->weight}} g</h5>
+                            <h3 class="card-text">{{$product->price}} €</h3>
+                        </a>
+                        @elseif($product->price >= 20)
+                            <div class="col-md-3  m-2 card bg-info">
+                                <a class="text-decoration-none text-white" href="/product/{{$product['id']}}">
+                                    <img src="{{$product->image}}" width="250px" height="200px" class=" mt-2"  alt="">
+                                    <h5 class="card-title ">{{$product->name}}</h5>
+                                    <h5 class="card-title">{{$product->description}}</h5>
+                                    <h5 class="card-title">{{$product->weight}} g</h5>
+                                    <h3 class="card-text">{{$product->price}} €</h3>
+                                </a>
+                                @endif
+
+
+
+                            </div>
+                            {{--                </div>--}}
+                            @endforeach
+
+                    </div>
+
+        </div>
 
 @endsection
 
 @section('footer')
 @endsection
+
+
+
+
+
 
 
 
