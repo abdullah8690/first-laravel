@@ -21,11 +21,13 @@ use App\Models\Categories;
 */
 
         // partie 2.2
+Route::get('/dashboard',[ProductController::class,'index'])->middleware(['auth'])->name('dashboard');
 Route::get('/',[HomeController::class,'homePage']);
 
-Route::get('/admin', function () {
-    return view('admin.dashboard');
-});
+require __DIR__.'/auth.php';
+//Route::get('/admin', function () {
+//    return view('admin.dashboard');
+//});
 Route::post('/cart/{id}',[CartController::class,'panier'])->name('addTo.cart');
 
 
